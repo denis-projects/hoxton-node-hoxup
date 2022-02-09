@@ -7,7 +7,7 @@ type Props = {
   currentUser: User
 }
 
-export type Message = {
+export type MessageType = {
   userId: number
   participantId: number
   id: number
@@ -19,7 +19,7 @@ type CurrentConversation = {
   userId: number
   participantId: number
   id: number
-  messages: Message[]
+  messages: MessageType[]
 }
 
 
