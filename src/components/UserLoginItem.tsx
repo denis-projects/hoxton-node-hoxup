@@ -1,4 +1,11 @@
-function UserLoginItem ({ user, logIn }) {
+import { User } from "../App"
+
+type Props = {
+  user: User
+  logIn: any
+}
+
+function UserLoginItem({ user, logIn }: Props) {
   return (
     <li>
       <button
