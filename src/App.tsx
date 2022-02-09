@@ -6,7 +6,7 @@ import Login from './pages/Login'
 import Main from './pages/Main'
 import NotFound from './pages/NotFound'
 
-type User = {
+export type User = {
   firstName: string
   lastName: string
   phoneNumber: string
@@ -14,19 +14,6 @@ type User = {
   id: number
 }
 
-type CurrentUser = {
-  firstName: string
-  lastName: string
-  phoneNumber: string
-  avatar: string
-  id: number
-}
-
-type LogOut = any
-
-type modal = string
-
-type SetModal = React.Dispatch<React.SetStateAction<string>>
 
 export default function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null)

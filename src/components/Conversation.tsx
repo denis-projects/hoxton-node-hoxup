@@ -7,12 +7,27 @@ type Props = {
   currentUser: User
 }
 
+export type Mesage = {
+  userId: number
+  participantId: number
+  id: number
+}
+
+
+type CurrentConversation = {
+  userId: number
+  participantId: number
+  id: number
+  messages: Mesage[]
+}
+
+
 function Conversation({ currentUser }: Props) {
-  const [currentConversation, setCurrentConversation] = useState(null)
+  const [currentConversation, setCurrentConversation] = useState<CurrentConversation | null>(null)
 
   const params = useParams()
 
-  function createMessage(text) {
+  function createMessage(text: string) {
     // create a message on the server ✅
 
     fetch('http://localhost:4000/messages', {
@@ -61,6 +76,7 @@ function Conversation({ currentUser }: Props) {
             key={message.id}
             message={message}
             outgoing={message.userId === currentUser.id}
+
           />
         ))}
       </ul>

@@ -2,21 +2,26 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Conversation from '../components/Conversation'
 import { User } from "../App"
-import { Modal } from "../App"
-import { SetModal } from "../App"
-import { LogOut } from "../App"
+
+
 
 type Props = {
   users: User[];
-  currentUser: User
-  modal: Modal
-  setModal: SetModal
-  logOut: LogOut
+  currentUser: User | null
+  modal: string
+  setModal: React.Dispatch<React.SetStateAction<string>>
+  logOut: Function
+}
 
+
+type Conversation = {
+  userId: number
+  participantId: number
+  id: number
 }
 
 function Main({ currentUser, logOut, users, setModal, modal }: Props) {
-  const [conversations, setConversations] = useState([])
+  const [conversations, setConversations] = useState<Conversation[]>([])
   const params = useParams()
   const navigate = useNavigate()
 
@@ -50,14 +55,14 @@ function Main({ currentUser, logOut, users, setModal, modal }: Props) {
     return true
   })
 
-  function createConversation(participantId) {
+  function createConversation(participantId: number) {
     fetch('http://localhost:4000/conversations', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        userId: currentUser.id,
+        userId: currentUser?.id,
         participantId: participantId
       })
     })
@@ -131,11 +136,11 @@ function Main({ currentUser, logOut, users, setModal, modal }: Props) {
                     height="50"
                     width="50"
                     alt=""
-                    src={talkingToUser.avatar}
+                    src={talkingToUser?.avatar}
                   />
                   <div>
                     <h3>
-                      {talkingToUser.firstName} {talkingToUser.lastName}
+                      {talkingToUser?.firstName} {talkingToUser?.lastName}
                     </h3>
                     <p>Last message</p>
                   </div>
