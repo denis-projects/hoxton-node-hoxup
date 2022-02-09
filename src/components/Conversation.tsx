@@ -11,6 +11,7 @@ export type Message = {
   userId: number
   participantId: number
   id: number
+  messageText: string
 }
 
 
