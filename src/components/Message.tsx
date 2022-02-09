@@ -1,7 +1,7 @@
-import { Mesage } from "../components/Conversation"
+import { Message } from "../components/Conversation"
 
 type Props = {
-  message: Mesage
+  message: Message
   outgoing: boolean
 }
 
